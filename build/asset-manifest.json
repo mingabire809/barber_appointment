@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.073c9b0a.css",
+    "main.js": "/static/js/main.343d426f.js",
+    "static/js/787.b0db5e73.chunk.js": "/static/js/787.b0db5e73.chunk.js",
+    "static/media/background.jpg": "/static/media/background.03f1f75e5fb74ff4352e.jpg",
+    "static/media/time.ico": "/static/media/time.02d5736ab53e2cb80cfa.ico",
+    "static/media/barber5.jpg": "/static/media/barber5.298a294ec029937cd9cd.jpg",
+    "static/media/wallpaper.jpg": "/static/media/wallpaper.cae2a984cdb9e8c5f218.jpg",
+    "static/media/barber2.webp": "/static/media/barber2.82046c51072fbfdb3deb.webp",
+    "static/media/extra.jpg": "/static/media/extra.532b190aefba9bd948ee.jpg",
+    "static/media/haircut.jpg": "/static/media/haircut.f6552ad0afe9ca80f356.jpg",
+    "static/media/barber.jpg": "/static/media/barber.0922162fcd97e581c124.jpg",
+    "static/media/barber4.jpg": "/static/media/barber4.35592909d56bd592b786.jpg",
+    "static/media/barber3.jpg": "/static/media/barber3.5a42d0b2eadcd17b0b56.jpg",
+    "static/media/booking.png": "/static/media/booking.dc373c0b1555bdbd35d1.png",
+    "static/media/barber-background.jpg": "/static/media/barber-background.555d8c52c3d4eeb3f2b6.jpg",
+    "static/media/crew_cut.jpg": "/static/media/crew_cut.7e6cf4658bde5bcc7d70.jpg",
+    "static/media/profile.webp": "/static/media/profile.7a6a6c54279a54d1977c.webp",
+    "static/media/logo2.png": "/static/media/logo2.74c228e473b33721c341.png",
+    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/index.html",
+    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
+    "main.343d426f.js.map": "/static/js/main.343d426f.js.map",
+    "787.b0db5e73.chunk.js.map": "/static/js/787.b0db5e73.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.343d426f.js"
+  ]
+}

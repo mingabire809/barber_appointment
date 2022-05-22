@@ -25,6 +25,9 @@ urlpatterns = [
     path('member/', include('member.urls')),
     path('services/', include('services.urls')),
     path('booking/', include('booking.urls')),
+    path('membership/', include('membership.urls')),
+    path('premium/', include('premium.urls')),
+    path('payment/', include('payment.urls')),
 
     path('login', obtain_auth_token, name="login")
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

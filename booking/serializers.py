@@ -30,8 +30,9 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ('booking_reference_number', 'member', 'name', 'email', 'phone', 'hair_cut',
-                  'extra_services',
-                  'base_price', 'extra_price', 'booking_date', 'is_processed')
+                  'extra_services', 'location',
+                  'base_price', 'extra_price', 'total_price', 'pay_now', 'payment_method', 'booking_date', 'paid',
+                  'is_processed')
 
     def create(self, validated_data):
         # account_data = validated_data.pop('customer')

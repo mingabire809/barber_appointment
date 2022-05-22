@@ -11,4 +11,4 @@ class HairCutSerializer(serializers.ModelSerializer):
 class ExtraServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExtraService
-        fields = ['type_of_service', 'service_price']
+        fields = ['type_of_service', 'service_picture', 'service_price']

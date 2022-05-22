@@ -29,10 +29,18 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 class RegisterMemberView(GenericAPIView):
-    # User = get_user_model()
+    serializer_class = MemberSerializer
 
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED)
+        return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+"""
     def post(self, request, *args, **kwargs):
-        """Handles post request logic"""
+        """"Handles post request logic""""
         registration_serializer = MemberSerializer(data=request.data)
 
         # Generate tokens for existing users
@@ -75,7 +83,7 @@ class RegisterMemberView(GenericAPIView):
         NON AUTHORITATIVE INFORMATION ",
             }
         )
-
+"""
 
 # @api_view(['POST'])
 # @authentication_classes([])

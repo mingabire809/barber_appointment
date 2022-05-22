@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'booking',
     'services',
     'corsheaders',
+    'membership',
+    'premium',
+    'payment',
 
 ]
 

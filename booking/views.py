@@ -58,8 +58,7 @@ class BookingDetails(viewsets.ViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk, format=None):
-        member = get_object_or_404(Booking, member=request.user)
-        if member == request.user:
+        if request.user:
             booking = Booking.objects.filter(
                 booking_reference_number=pk)
             booking.delete()

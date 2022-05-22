@@ -14,7 +14,7 @@ class HaircutAdmin(admin.ModelAdmin):
 
 
 class ExtraServiceAdmin(admin.ModelAdmin):
-    list_display = ('type_of_service', 'service_price')
+    list_display = ('type_of_service', 'service_price', 'service_picture')
     search_fields = ('type_of_service', 'service_price')
 
     filter_horizontal = ()

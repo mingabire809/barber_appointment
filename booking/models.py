@@ -64,37 +64,50 @@ class Booking(models.Model):
         reference = "".join(temp)
         return reference
 
-    booking_reference_number = models.CharField(unique=True, verbose_name='Booking number', default=reference,
-                                                max_length=30)
-    # booking_person = models.ForeignKey(Member, verbose_name='Member', on_delete=models.CASCADE)
-    # booking_user = models.ForeignKey(Member,  Member.full_name, on_delete=models.CASCADE, verbose_name="Member name")
-    # full_name = models.CharField(blank=True, max_length=150)
-    # booking_username = Member.objects.get(username=booking_person.member.username)
-    # booking_username = models.CharField(max_length=150, blank=True)
-    # email = models.CharField(max_length=150, blank=True)
-    #  customer = models.ForeignKey(Member, verbose_name='customer', on_delete=models.CASCADE, null=True)
+    IMMEDIATE_PAYMENT = [('YES', 'Yes'),
+                         ('NO', 'No')]
+    PAYMENT_METHOD = [('PREMIUM', 'Premium'),
+                      ('M-PESA', 'M-Pesa'),
+                      ('VISA CARD', 'Visa Card'),
+                      ('MASTERCARD', 'MasterCard'),
+                      ('CASH', 'Cash')]
+    PLACE = [('HOME', 'Home'),
+             ('ON-SITE', 'On-site')]
+
+    booking_reference_number = models.CharField(verbose_name='Booking number', default=reference,
+                                                max_length=30, primary_key=True)
     member = models.ForeignKey(Member, verbose_name='customer', null=True, on_delete=models.CASCADE)
-    name = models.CharField(verbose_name='Customer name',  max_length=150, null=True)
+    name = models.CharField(verbose_name='Customer name', max_length=150, null=True)
     email = models.CharField(verbose_name='Customer email', max_length=150, null=True)
     phone = models.BigIntegerField(verbose_name='Customer Phone Number', null=True)
     hair_cut = models.ForeignKey(HairCut, verbose_name='Hair Cut', on_delete=models.CASCADE)
     extra_services = models.ForeignKey(ExtraService, verbose_name='Extra Service', max_length=150,
-                                       on_delete=models.CASCADE)
-    base_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
-    extra_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
-    # total_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True)
+                                       on_delete=models.CASCADE, null=True)
+    location = models.CharField(max_length=20, verbose_name='Place', blank=True, null=True)
+    base_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0.0)
+    extra_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0.0)
+    total_price = models.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0.0)
+    pay_now = models.CharField(verbose_name='Pay Now', max_length=150, blank=True,
+                               choices=IMMEDIATE_PAYMENT, null=True, default='NO')
+    payment_method = models.CharField(verbose_name='Method of Payment', max_length=150, blank=True, null=True,
+                                      choices=PAYMENT_METHOD)
     booking_date = models.DateTimeField(auto_now_add=True, verbose_name='Time')
+    paid = models.BooleanField(verbose_name='Paid', default=False)
     is_processed = models.BooleanField(default=False)
-
-    # first_price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='hair cut price', default=base_price)
-    # second_price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='service price', default=extra_price)
 
     def save(self, *args, **kwargs):
         if not self.base_price:
             self.base_price = self.hair_cut.price
         if not self.extra_price:
             self.extra_price = self.extra_services.service_price
+        if not self.total_price:
+            self.total_price = self.base_price + self.extra_price
+        if self.location == 'HOME':
+            self.total_price = self.base_price + self.extra_price + 6.99
+        if self.pay_now == 'NO':
+            self.payment_method = 'CASH'
+
         super(Booking, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.booking_reference_number} ,{self.booking_date}, {self.hair_cut}, {self.extra_services}, {self.base_price}$, {self.extra_price}$'
+        return f'{self.booking_reference_number} ,{self.booking_date}, {self.hair_cut}, {self.extra_services}, {self.location},{self.base_price}$, {self.extra_price}$, {self.total_price}$, {self.pay_now}, {self.payment_method}, {self.booking_date}, {self.paid}'
